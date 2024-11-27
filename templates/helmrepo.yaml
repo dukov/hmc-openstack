@@ -1,0 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  labels:
+    {{- include "hmc-openstack.labels" . | nindent 4 }}
+  name: {{ include "hmc-openstack.fullname" . }}
+spec:
+  interval: 10m0s
+  provider: generic
+  type: {{ .Value.repo.type }}
+  url: {{ .Values.repo.url }} 

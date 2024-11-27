@@ -1,0 +1,4 @@
+repo:
+  url: oci://registry-1.docker.io/dukov
+  type: oci
+

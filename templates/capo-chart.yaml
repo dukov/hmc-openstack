@@ -1,0 +1,14 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmChart
+metadata:
+  name: capo-{{ include "hmc-openstack.fullname" . }}
+  labels:
+    {{- include "hmc-openstack.labels" . | nindent 4 }}
+spec:
+  chart: cluster-api-provider-openstack
+  interval: 10m0s
+  reconcileStrategy: ChartVersion
+  sourceRef:
+    kind: HelmRepository
+    name: {{ include "hmc-openstack.fullname" . }}
+  version: 0.0.1

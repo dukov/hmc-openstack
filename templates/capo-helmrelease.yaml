@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: {{ include "hmc-openstack.fullname" . }}
+  labels:
+    {{- include "hmc-openstack.labels" . | nindent 4 }}
+spec:
+  chartRef:
+    kind: HelmChart
+    name: capo-{{ include "hmc-openstack.fullname" . }}
+  dependsOn:
+  - name: capi
+  install: {}
+  interval: 10m0s
+  releaseName: cluster-api-provider-openstack

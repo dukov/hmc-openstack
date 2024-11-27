@@ -1,0 +1,12 @@
+apiVersion: hmc.mirantis.com/v1alpha1
+kind: ClusterTemplate
+metadata:
+  name: {{ include "hmc-openstack.fullname" . }}
+  labels:
+    {{- include "hmc-openstack.labels" . | nindent 4 }}
+spec:
+  helm:
+    chartRef:
+      kind: HelmChart
+      namespace: {{ .Release.Namespace }}
+      name: os-cp-{{ include "hmc-openstack.fullname" . }}

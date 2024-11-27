@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmChart
+metadata:
+  name: standalone-cp-{{ include "hmc-openstack.fullname" . }sa}
+  labels:
+    {{- include "hmc-openstack.labels" . | nindent 4 }}
+spec:
+  chart: openstack-standalone-cp
+  interval: 10m0s
+  reconcileStrategy: ChartVersion
+  sourceRef:
+    kind: HelmRepository
+    name: {{ include "hmc-openstack.fullname" . }}
+  version: 0.0.1
+-
